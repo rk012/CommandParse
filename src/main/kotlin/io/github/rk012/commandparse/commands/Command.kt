@@ -1,7 +1,7 @@
 package io.github.rk012.commandparse.commands
 
-import io.github.rk012.commandparse.exceptions.CommandArgLengthException
-import io.github.rk012.commandparse.exceptions.CommandArgTypeException
+import io.github.rk012.commandparse.exceptions.parsing.CommandArgLengthException
+import io.github.rk012.commandparse.exceptions.parsing.CommandArgTypeException
 import io.github.rk012.commandparse.typing.ArgType
 
 import java.lang.NumberFormatException

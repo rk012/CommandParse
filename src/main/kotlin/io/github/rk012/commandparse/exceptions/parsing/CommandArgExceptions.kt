@@ -1,4 +1,4 @@
-package io.github.rk012.commandparse.exceptions
+package io.github.rk012.commandparse.exceptions.parsing
 
 import io.github.rk012.commandparse.typing.ArgType
 

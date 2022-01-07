@@ -2,9 +2,10 @@ package io.github.rk012.commandparse
 
 import io.github.rk012.commandparse.commands.Command
 import io.github.rk012.commandparse.commands.CommandGroup
-import io.github.rk012.commandparse.exceptions.CommandArgLengthException
-import io.github.rk012.commandparse.exceptions.CommandArgTypeException
-import io.github.rk012.commandparse.exceptions.NoSuchCommandException
+import io.github.rk012.commandparse.exceptions.api.InvalidCommandNameException
+import io.github.rk012.commandparse.exceptions.parsing.CommandArgLengthException
+import io.github.rk012.commandparse.exceptions.parsing.CommandArgTypeException
+import io.github.rk012.commandparse.exceptions.parsing.NoSuchCommandException
 import io.github.rk012.commandparse.typing.ArgType
 
 import org.junit.jupiter.api.Test
@@ -118,5 +119,10 @@ class ParserExceptionsTest {
         } catch (e: CommandArgTypeException) {
             assertEquals(e.message, "Expected type Integer, got value \"h\".")
         }
+    }
+
+    @Test
+    fun invalidCommandNameTest() {
+        assertThrows(InvalidCommandNameException::class.java) {parser.addCommand("foo bar", Command({}, listOf()))}
     }
 }
