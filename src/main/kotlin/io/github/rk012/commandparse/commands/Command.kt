@@ -3,25 +3,34 @@ package io.github.rk012.commandparse.commands
 import io.github.rk012.commandparse.exceptions.parsing.CommandArgLengthException
 import io.github.rk012.commandparse.exceptions.parsing.CommandArgTypeException
 import io.github.rk012.commandparse.typing.ArgType
+import io.github.rk012.commandparse.typing.Flag
 
 import java.lang.NumberFormatException
 
-class Command (private val command: (List<Any>) -> Unit, private val argTypes: List<ArgType>?) {
+class Command (private val command: (List<Any>) -> Unit, private val argTypes: List<ArgType>?=null, private val flags: List<Flag>?=null) {
     private lateinit var inputArgs: MutableList<Any>
+    private lateinit var inputFlags: MutableMap<String, Any>
 
     internal fun setArgs(args: String) {
         val rawArgs = mutableListOf<String>()
 
         var currentWord = ""
+        var isFlag = false
 
         args.trim().split(" ").forEach {
-            if (currentWord.isEmpty()) {
-                if (it.startsWith("\"")) currentWord += " $it" else rawArgs.add(it)
-            } else {
-                if (it.endsWith("\"") && it[it.length-2] != '\\') {
-                    rawArgs.add("$currentWord $it")
-                    currentWord = ""
+            if (!isFlag) {
+                if (currentWord.isEmpty()) {
+                    when {
+                        it.startsWith("-") -> isFlag = true
+                        it.startsWith("\"") -> currentWord += " $it"
+                        else -> rawArgs.add(it)
+                    }
+                } else if (it.endsWith("\"") && it[it.length - 2] != '\\') {
+                        rawArgs.add("$currentWord $it")
+                        currentWord = ""
                 } else currentWord += " $it"
+            } else {
+
             }
         }
 
