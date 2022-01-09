@@ -1,4 +1,3 @@
 package io.github.rk012.commandparse.exceptions.parsing
 
-abstract class ParseException : Exception() {
-}
+abstract class ParseException: Exception()

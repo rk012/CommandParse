@@ -94,19 +94,19 @@ class ParserExceptionsTest {
         try {
             parser.runCommand("foo subtract 3")
         } catch (e: CommandArgLengthException) {
-            assertEquals(e.message, "Expected 2 args, received 1 instead.")
+            assertEquals(e.message, "Expected 2 args, received 1 instead")
         }
 
         try {
             parser.runCommand("foo subtract")
         } catch (e: CommandArgLengthException) {
-            assertEquals(e.message, "Expected 2 args, received 0 instead.")
+            assertEquals(e.message, "Expected 2 args, received 0 instead")
         }
 
         try {
             parser.runCommand("foo subtract 3 4 5")
         } catch (e: CommandArgLengthException) {
-            assertEquals(e.message, "Expected 2 args, received 3 instead.")
+            assertEquals(e.message, "Expected 2 args, received 3 instead")
         }
     }
 
@@ -117,12 +117,12 @@ class ParserExceptionsTest {
         try {
             parser.runCommand("add 6 h")
         } catch (e: CommandArgTypeException) {
-            assertEquals(e.message, "Expected type Integer, got value \"h\".")
+            assertEquals(e.message, "Expected type Integer, got value \"h\"")
         }
     }
 
     @Test
     fun invalidCommandNameTest() {
-        assertThrows(InvalidCommandNameException::class.java) {parser.addCommand("foo bar", Command({}, null))}
+        assertThrows(InvalidCommandNameException::class.java) {parser.addCommand("foo bar", Command({}))}
     }
 }
