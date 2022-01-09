@@ -123,6 +123,6 @@ class ParserExceptionsTest {
 
     @Test
     fun invalidCommandNameTest() {
-        assertThrows(InvalidCommandNameException::class.java) {parser.addCommand("foo bar", Command({}, listOf()))}
+        assertThrows(InvalidCommandNameException::class.java) {parser.addCommand("foo bar", Command({}, null))}
     }
 }

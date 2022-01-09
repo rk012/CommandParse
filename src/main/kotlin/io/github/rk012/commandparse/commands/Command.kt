@@ -6,7 +6,7 @@ import io.github.rk012.commandparse.typing.ArgType
 
 import java.lang.NumberFormatException
 
-class Command (val command: (List<Any>) -> Unit, private val argTypes: List<ArgType>?) {
+class Command (private val command: (List<Any>) -> Unit, private val argTypes: List<ArgType>?) {
     private lateinit var inputArgs: MutableList<Any>
 
     internal fun setArgs(args: String) {
